@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="post" onsubmit="return validateRegisterForm()">
+    {% csrf_token %}
+
+    <label>Username</label>
+    <input type="text" id="reg-username" name="username">
+
+    <label>Password</label>
+    <input type="password" id="reg-password" name="password">
+
+    <button type="submit">Register</button>
+</form>
+
+<p>
+    Already have an account?
+    <a href="{% url 'login' %}">Login</a>
+</p>
+{% endblock %}

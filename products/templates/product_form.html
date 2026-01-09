@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Product{% endblock %}
+
+{% block content %}
+<h2>
+    {% if form.instance.pk %}
+        Edit Product
+    {% else %}
+        Add Product
+    {% endif %}
+</h2>
+
+<form method="post" onsubmit="return validateProductForm()">
+    {% csrf_token %}
+
+    <label>Product Name</label>
+    <input type="text" id="product-name" name="name" value="{{ form.name.value|default:'' }}">
+
+    <label>Price</label>
+    <input type="number" id="product-price" name="price" step="0.01"
+           value="{{ form.price.value|default:'' }}">
+
+    <label>Description</label>
+    {{ form.description }}
+
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

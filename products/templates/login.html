@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" onsubmit="return validateLoginForm()">
+    {% csrf_token %}
+
+    <label>Username</label>
+    <input type="text" id="login-username" name="username">
+
+    <label>Password</label>
+    <input type="password" id="login-password" name="password">
+
+    <button type="submit">Login</button>
+</form>
+
+<p>
+    Don’t have an account?
+    <a href="{% url 'register' %}">Sign up</a>
+</p>
+{% endblock %}
